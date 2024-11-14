@@ -47,6 +47,10 @@ public class Game {
             this.longDescription = longDescription;
         }
 
+        public Long getId() {
+            return id;
+        }
+
         public void setId(Long id) {
             this.id = id;
         }
@@ -129,5 +133,7 @@ public class Game {
             Game other = (Game) obj;
             return Objects.equals(id, other.id);
         }
+
+        
 
 }
