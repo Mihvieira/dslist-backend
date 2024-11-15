@@ -36,7 +36,7 @@ public class GameListService {
         list.add(destinationIndex, obj);
         
         int min = sourceIndex < destinationIndex ? sourceIndex : destinationIndex;
-        int max = sourceIndex > destinationIndex ?  destinationIndex : sourceIndex;
+        int max = sourceIndex < destinationIndex ? destinationIndex : sourceIndex;
 
         for (int minIndex = min; minIndex <= max; minIndex++) {
             gameListRepository.updateBelongingPosition(listId, list.get(minIndex).getId(), minIndex);
