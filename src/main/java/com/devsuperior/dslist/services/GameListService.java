@@ -16,6 +16,7 @@ import com.devsuperior.dslist.repositories.GameRepository;
 
 @Service
 public class GameListService {
+    
 
     @Autowired
     private GameListRepository gameListRepository;

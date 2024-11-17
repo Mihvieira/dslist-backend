@@ -16,6 +16,7 @@ import com.devsuperior.dslist.dto.ReplacementDTO;
 import com.devsuperior.dslist.services.GameListService;
 import com.devsuperior.dslist.services.GameService;
 
+
 @RestController
 @RequestMapping(value = "/lists")
 public class GameListController {
@@ -37,6 +38,7 @@ public class GameListController {
         return list;
     }
 
+    
     @PostMapping(value= "/{listId}/replacement")
     public void move(@PathVariable Long listId, @RequestBody ReplacementDTO body){
         gameListService.move(listId, body.getSourceIndex(), body.getDestinationIndex());

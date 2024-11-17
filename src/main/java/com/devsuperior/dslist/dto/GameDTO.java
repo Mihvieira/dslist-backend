@@ -1,14 +1,16 @@
 package com.devsuperior.dslist.dto;
 
-import java.util.Objects;
-
 import org.springframework.beans.BeanUtils;
 
 import com.devsuperior.dslist.entities.Game;
 
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
-
 public class GameDTO {
+/**
+ * Data Transfer Object (DTO) para a entidade Game.
+ * 
+ * Esta classe é usada para transferir dados de um objeto Game entre diferentes
+ * camadas da aplicação.
+ */
 
     private Long id;
     private String title;
