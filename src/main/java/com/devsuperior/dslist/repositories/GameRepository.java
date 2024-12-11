@@ -1,11 +1,13 @@
 package com.devsuperior.dslist.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import com.devsuperior.dslist.dto.GameDTO;
 import com.devsuperior.dslist.entities.Game;
 import com.devsuperior.dslist.projections.GameMinProjection;
 
@@ -28,8 +30,12 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 
     @Modifying
     @Query(nativeQuery = true,
-    value = "UPDATE tb_game SET title = :title, game_year = :gameYear, score = :score, img_url = :imgUrl, short_description = :shortDescription, genre = :genre, long_description = :long_description, platforms = :platforms WHERE id = :id")
-    void updateGame(Long id, String title, Integer year, String genre, String platform, Double score, String imgUrl,
+    value = "UPDATE tb_game SET title = :title, game_year = :gameYear, score = :score, img_url = :imgUrl, short_description = :shortDescription, genre = :genre, long_description = :longDescription, platforms = :platforms WHERE id = :id")
+    void updateGame(Long id, String title, Integer gameYear, String genre, String platforms, Double score, String imgUrl,
     String shortDescription, String longDescription);
+
+    @Query(nativeQuery = true, value = """
+            SELECT tb_game.id, tb_game.title, tb_game.game_year FROM tb_game WHERE title = :title""")
+    List<GameMinProjection> findByTitle(String title);
 }
 

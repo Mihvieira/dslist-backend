@@ -42,6 +42,12 @@ public class GameService {
         return list.stream().map(x -> new GameMinDTO(x)).collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByTitle(String title) {
+        List<GameMinProjection> list = gameRepository.findByTitle(title);
+        return list.stream().map(x -> new GameMinDTO(x)).collect(Collectors.toList());
+    }
+
     @Transactional
     public void delete(Long id) {
         gameRepository.deleteById(id);
@@ -65,23 +71,25 @@ public class GameService {
     }
 
     @Transactional
-public GameDTO update(Long id, GameDTO gameDTO) {
-    Optional<Game> optionalGame = gameRepository.findById(id);
-    if (optionalGame.isPresent()) {
-        Game game = optionalGame.get();
-        game.setTitle(gameDTO.getTitle());
-        game.setGenre(gameDTO.getGenre());
-        game.setPlatforms(gameDTO.getPlatforms());
-        game.setYear(gameDTO.getYear());
-        game.setImgUrl(gameDTO.getImgUrl());
-        game.setLongDescription(gameDTO.getLongDescription());
-        game.setScore(gameDTO.getScore());
-        game.setShortDescription(gameDTO.getShortDescription());
-        game = gameRepository.save(game);
-        return new GameDTO(game);
-    } else {
-        // Lidar com o caso onde o jogo não foi encontrado
-        throw new EntityNotFoundException("Game not found with id " + id);
+    public GameDTO update(Long id, GameDTO gameDTO) {
+        Optional<Game> optionalGame = gameRepository.findById(id);
+        if (optionalGame.isPresent()) {
+            Game game = optionalGame.get();
+            game.setTitle(gameDTO.getTitle());
+            game.setGenre(gameDTO.getGenre());
+            game.setPlatforms(gameDTO.getPlatforms());
+            game.setYear(gameDTO.getYear());
+            game.setImgUrl(gameDTO.getImgUrl());
+            game.setLongDescription(gameDTO.getLongDescription());
+            game.setScore(gameDTO.getScore());
+            game.setShortDescription(gameDTO.getShortDescription());
+            game = gameRepository.save(game);
+            return new GameDTO(game);
+        } else {
+            // Lidar com o caso onde o jogo não foi encontrado
+            throw new EntityNotFoundException("Game not found with id " + id);
+            }
         }
-    }
+    
+    
 }
