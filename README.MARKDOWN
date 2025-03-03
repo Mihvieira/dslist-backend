@@ -1,6 +1,6 @@
 # DSLIST
 
-Este projeto foi realizado durante o curso Intensivão Java Spring da plataforma DevSuperior. O objetivo do projeto DSLIST é criar uma aplicação backend para gerenciar uma lista de jogos, utilizando diversas tecnologias e conceitos aprendidos ao longo do curso.
+O objetivo do projeto DSLIST é criar uma aplicação backend para gerenciar uma lista de jogos, utilizando diversas tecnologias.
 
 ## Aprendizados
 
